@@ -1,23 +1,702 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+        <!-- JSON-LD Structured Data for Service Snippets -->
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "serviceType": "투싼 렌터카 대여 서비스",
+          "provider": {
+            "@type": "Organization",
+            "name": "전문 렌터카 비교 업체",
+            "url": "https://yourdomain.com",
+            "logo": "https://yourdomain.com/logo.png"
+          },
+          "areaServed": {
+            "@type": "State",
+            "name": "대한민국"
+          },
+          "description": "다양한 트림의 투싼 모델(NX4, TL 등)을 장기 및 단기 렌트로 제공합니다. 고객 맞춤형 견적 비교를 통해 가장 합리적인 투싼 렌트카를 찾아드립니다.",
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "투싼 렌트 상품 목록",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Product",
+                  "name": "투싼 장기 렌트 (48개월)"
+                },
+                "priceSpecification": {
+                  "@type": "PriceSpecification",
+                  "price": "300000",
+                  "priceCurrency": "KRW",
+                  "description": "투싼 장기 렌트 월 납입금 (모델, 조건에 따라 상이함)"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Product",
+                  "name": "투싼 단기 렌트 (1일 기준)"
+                },
+                "priceSpecification": {
+                  "@type": "PriceSpecification",
+                  "price": "80000",
+                  "priceCurrency": "KRW",
+                  "description": "투싼 단기 렌트 1일 대여료 (성수기, 비수기에 따라 상이함)"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Product",
+                  "name": "투싼 하이브리드 장기 렌트"
+                },
+                "priceSpecification": {
+                  "@type": "PriceSpecification",
+                  "price": "350000",
+                  "priceCurrency": "KRW",
+                  "description": "투싼 하이브리드 모델 월 납입금 (모델, 조건에 따라 상이함)"
+                }
+              }
+            ]
+          },
+          "url": "https://yourdomain.com/tucson-rental"
+        }
+        </script>
+
+        <!-- Google Fonts: Noto Sans KR for Korean text -->
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+        <style>
+            :root {
+                --main-color: #3f51b5; /* Indigo */
+                --accent-color: #ff9800; /* Amber */
+                --bg-light: #f5f7fa;
+                --text-dark: #333;
+                --text-medium: #555;
+                --border-light: #e0e0e0;
+                --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.05);
+            }
+
+            body {
+                font-family: 'Noto Sans KR', sans-serif;
+                margin: 0;
+                padding: 0;
+                line-height: 1.6;
+                background-color: var(--bg-light);
+                color: var(--text-dark);
+            }
+
+            /* Header Styling */
+            header {
+                background: linear-gradient(135deg, var(--main-color), #2c3e50);
+                color: white;
+                padding: 4rem 1rem;
+                text-align: center;
+                position: relative;
+                overflow: hidden;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            }
+            header h1 {
+                font-size: 2.8rem;
+                font-weight: 900;
+                margin: 0;
+                letter-spacing: -1px;
+                text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            }
+            header p {
+                font-size: 1.2rem;
+                font-weight: 300;
+                margin-top: 0.5rem;
+            }
+
+            /* Navigation Styling */
+            nav ul {
+                list-style: none;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                gap: 1.5rem;
+                margin-top: 2rem;
+            }
+            nav a {
+                color: white;
+                text-decoration: none;
+                font-weight: 500;
+                padding: 0.7rem 1.2rem;
+                border-radius: 25px;
+                background-color: rgba(255, 255, 255, 0.1);
+                transition: background-color 0.3s ease, transform 0.2s ease;
+            }
+            nav a:hover {
+                background-color: rgba(255, 255, 255, 0.25);
+                transform: translateY(-2px);
+            }
+
+            /* Main Content Layout */
+            main {
+                max-width: 1080px;
+                margin: 2rem auto;
+                padding: 0 1.5rem;
+            }
+            section {
+                background-color: white;
+                padding: 2.5rem;
+                border-radius: 16px;
+                box-shadow: var(--shadow-light);
+                margin-bottom: 2.5rem;
+                transition: all 0.3s ease;
+            }
+            section:hover {
+                box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+            }
+
+            /* Typography */
+            h2 {
+                color: var(--main-color);
+                font-size: 2rem;
+                font-weight: 700;
+                margin-top: 0;
+                padding-bottom: 0.5rem;
+                border-bottom: 3px solid var(--accent-color);
+                display: inline-block;
+                text-align: left;
+            }
+            h3 {
+                color: var(--text-dark);
+                font-size: 1.5rem;
+                font-weight: 700;
+                margin-top: 2rem;
+                margin-bottom: 1rem;
+            }
+            p, ul, dl {
+                font-size: 1.05rem;
+                color: var(--text-medium);
+                line-height: 1.8;
+            }
+            strong {
+                color: var(--main-color);
+                font-weight: 700;
+            }
+
+            /* Tables */
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 1.5rem;
+            }
+            th, td {
+                padding: 1rem;
+                text-align: center;
+                border: 1px solid var(--border-light);
+            }
+            th {
+                background-color: var(--main-color);
+                color: white;
+                font-weight: 700;
+                font-size: 1.0rem;
+            }
+            td {
+                background-color: white;
+            }
+            tr:nth-child(even) td {
+                background-color: #fcfcfc;
+            }
+            .highlight-row {
+                background-color: #fff3e0 !important;
+                font-weight: 700;
+            }
+
+            /* CTA Button */
+            .cta-button {
+                display: inline-block;
+                background-color: var(--accent-color);
+                color: white;
+                font-weight: 700;
+                font-size: 1.1rem;
+                padding: 1.2rem 2.5rem;
+                border-radius: 50px;
+                text-decoration: none;
+                margin: 2rem auto;
+                transition: background-color 0.3s ease, transform 0.2s ease;
+                text-align: center;
+                box-shadow: 0 6px 15px rgba(255, 152, 0, 0.3);
+            }
+            .cta-button:hover {
+                background-color: #fb8c00;
+                transform: translateY(-3px);
+            }
+            .cta-container {
+                text-align: center;
+            }
+
+            /* Accordion/FAQ Styling */
+            dl dt {
+                cursor: pointer;
+                background-color: #e8eaf6; /* Lighter main color */
+                padding: 1rem;
+                border-radius: 8px;
+                margin-bottom: 0.5rem;
+                font-weight: 500;
+                position: relative;
+                transition: background-color 0.3s ease;
+            }
+            dl dt:hover {
+                background-color: #c5cae9;
+            }
+            dl dt::after {
+                content: '+';
+                position: absolute;
+                right: 1rem;
+                top: 50%;
+                transform: translateY(-50%);
+                font-size: 1.5rem;
+                transition: transform 0.3s ease;
+            }
+            dl dt.active::after {
+                content: '-';
+                transform: translateY(-50%) rotate(180deg);
+            }
+            dl dd {
+                padding: 1rem 1.5rem;
+                margin: 0;
+                border: 1px solid var(--border-light);
+                border-top: none;
+                background-color: white;
+                border-radius: 0 0 8px 8px;
+                display: none; /* Controlled by JavaScript */
+            }
+            dl dt.active + dd {
+                display: block;
+            }
+
+            /* Image styling */
+            .image-container {
+                width: 100%;
+                height: 300px;
+                overflow: hidden;
+                border-radius: 12px;
+                margin-bottom: 2rem;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            }
+            .image-container img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.3s ease;
+            }
+            .image-container img:hover {
+                transform: scale(1.05);
+            }
+
+            /* Footer */
+            footer {
+                text-align: center;
+                padding: 2.5rem;
+                font-size: 0.9rem;
+                color: #888;
+                background-color: #f0f0f0;
+                border-top: 1px solid var(--border-light);
+                margin-top: 3rem;
+            }
+
+            /* Simulation of Data Visualization (Chart/Graph) */
+            .data-visualization {
+                margin-top: 2rem;
+                padding: 1.5rem;
+                background-color: #fefefe;
+                border-radius: 12px;
+                border: 1px solid #ddd;
+            }
+            .data-visualization h4 {
+                color: var(--main-color);
+                margin-top: 0;
+            }
+            .bar-chart {
+                display: flex;
+                flex-direction: column;
+                height: 200px;
+                justify-content: space-between;
+                padding: 10px 0;
+            }
+            .bar {
+                background-color: var(--accent-color);
+                height: 20px;
+                margin-bottom: 10px;
+                border-radius: 4px;
+                position: relative;
+                transition: width 0.5s ease;
+            }
+            .bar-label {
+                position: absolute;
+                left: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: white;
+                font-weight: 700;
+                font-size: 0.9rem;
+            }
+
+            /* Form simulation (for dwell time) */
+            .contact-form {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                margin-top: 2rem;
+            }
+            .form-group label {
+                display: block;
+                margin-bottom: 0.5rem;
+                font-weight: 500;
+            }
+            .form-group input, .form-group select, .form-group textarea {
+                width: 100%;
+                padding: 12px;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                box-sizing: border-box;
+                font-size: 1rem;
+            }
+            .form-group textarea {
+                resize: vertical;
+            }
+            .submit-btn {
+                grid-column: 1 / -1;
+                background-color: var(--main-color);
+                color: white;
+                border: none;
+                padding: 1rem;
+                font-size: 1.1rem;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+            .submit-btn:hover {
+                background-color: #303f9f;
+            }
+
+            /* Media Queries for Responsiveness */
+            @media (min-width: 768px) {
+                .contact-form {
+                    grid-template-columns: 1fr 1fr;
+                }
+                .full-width {
+                    grid-column: 1 / -1;
+                }
+                .form-group input, .form-group select, .form-group textarea {
+                    font-size: 1.0rem;
+                }
+            }
+            @media (max-width: 600px) {
+                header h1 {
+                    font-size: 2rem;
+                }
+                nav ul {
+                    flex-wrap: wrap;
+                    gap: 1rem;
+                }
+                nav a {
+                    font-size: 0.9rem;
+                    padding: 0.5rem 1rem;
+                }
+                main {
+                    padding: 0 1rem;
+                }
+                section {
+                    padding: 1.5rem;
+                }
+                h2 {
+                    font-size: 1.5rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+
+        <header>
+            <h1>투싼 렌트 가격 비교, 현명한 선택을 위한 전문가 가이드</h1>
+            <p>2026년 최신 모델부터 합리적인 중고 모델까지, 투싼 렌트카의 모든 것을 파헤칩니다.</p>
+            <nav>
+                <ul>
+                    <li><a href="#introduction">투싼 렌트 소개</a></li>
+                    <li><a href="#modelspecs">모델별 비교 분석</a></li>
+                    <li><a href="#priceguide">가격 및 비용 안내</a></li>
+                    <li><a href="#review">장단점 및 후기</a></li>
+                    <li><a href="#contact">견적 문의</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section id="introduction">
+                <h2>투싼 렌트, 왜 지금 선택해야 할까요?</h2>
+                <div class="image-container">
+                    <!-- Image Source: Pexels.com. Search for "Hyundai Tucson" or "car rental" -->
+                    <img src="https://images.pexels.com/photos/1035651/pexels-photo-1035651.jpeg" alt="현대 투싼 렌터카 이미지">
+                </div>
+                <p><strong>투싼 렌트</strong>는 실용성과 스타일을 동시에 만족시키는 현대적인 SUV를 합리적인 조건으로 이용할 수 있는 최고의 방법입니다. 특히 최근 몇 년간 출시된 투싼 모델들은 첨단 기술과 뛰어난 연비 효율로 국내외에서 큰 인기를 얻고 있습니다. 1인 가구의 레저용 차량부터 소규모 가족 단위의 일상용 차량까지, 투싼은 다양한 라이프스타일에 완벽하게 부합합니다. 2026년 기준, 투싼은 신규 모델 출시 주기가 도래하면서 구형 모델(NX4, TL 등)의 재고 렌트 상품이 증가하고 있어, 평소보다 더욱 저렴한 가격으로 차량을 이용할 수 있는 좋은 기회가 많아졌습니다. 본 가이드에서는 투싼 렌트의 종류와 장단점, 그리고 현명한 가격 견적을 받는 방법을 상세히 알려드립니다.</p>
+
+                <h3>투싼 렌트카가 필요한 상황별 추천</h3>
+                <p>투싼 렌터카는 단순히 이동 수단을 넘어 다양한 상황에서 빛을 발합니다.</p>
+                <ul>
+                    <li><strong>여행 및 레저 활동:</strong> 넓은 적재 공간과 안정적인 주행 성능은 캠핑, 낚시, 골프 등 주말 레저 활동에 최적화되어 있습니다. 특히 짐이 많은 2인 이상의 여행에서 진가를 발휘합니다.</li>
+                    <li><strong>단기 업무 출장:</strong> 출장이 잦은 직장인들에게는 KTX나 비행기 이용 후 이동의 편리성을 제공합니다. 출장지에서 장시간 운전에도 피로가 적어 업무 효율을 높여줍니다.</li>
+                    <li><strong>신차 구매 전 시승:</strong> 투싼 하이브리드, 가솔린, 디젤 모델 중 어떤 것을 선택할지 고민이신가요? 장기 렌트나 단기 렌트를 통해 충분히 시승해보며 본인에게 맞는 모델을 결정할 수 있습니다.</li>
+                    <li><strong>차량 교체 시 임시 차량:</strong> 기존 차량이 사고나 정비로 인해 장기간 수리 중일 때, 투싼 렌트카는 공백 기간 동안 훌륭한 대안이 됩니다.</li>
+                </ul>
+
+                <a href="#contact" class="cta-button" aria-label="맞춤형 투싼 렌트 견적 상담">나에게 맞는 투싼 렌트 견적 받기</a>
+            </section>
+
+            <section id="modelspecs">
+                <h2>투싼 모델별 스펙 비교: NX4 vs TL vs 하이브리드</h2>
+                <p>투싼 렌트카를 선택할 때 가장 중요한 요소는 모델 선택입니다. 최신 <strong>투싼 NX4</strong> 모델은 뛰어난 디자인과 첨단 편의 사양으로 인기가 높으며, 이전 모델인 <strong>투싼 TL</strong>은 합리적인 렌트 비용으로 가성비를 찾는 분들에게 좋습니다. 특히 연비 효율을 중시한다면 <strong>투싼 하이브리드</strong> 모델을 고려해봐야 합니다. 2026년도 신차 모델의 출시를 앞두고, 구형 모델의 렌트카 재고가 할인 프로모션으로 풀리는 경우가 많으니 꼼꼼한 비교가 필요합니다.</p>
+
+                <h3>투싼 주요 모델 스펙 비교표</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>모델명</th>
+                            <th>연식</th>
+                            <th>주요 특징</th>
+                            <th>파워트레인 (가장 인기있는)</th>
+                            <th>주요 장점</th>
+                            <th>단점</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>투싼 (The New Tucson)</strong></td>
+                            <td>2024년 이후 (NX4)</td>
+                            <td>가장 최신 디자인과 첨단 사양 적용.</td>
+                            <td>1.6T 가솔린 (180hp), 1.6T 하이브리드 (230hp)</td>
+                            <td>최신 인포테인먼트, 향상된 연비, 넉넉한 공간.</td>
+                            <td>비교적 높은 렌트 비용</td>
+                        </tr>
+                        <tr>
+                            <td><strong>투싼 (4세대, NX4)</strong></td>
+                            <td>2020년 ~ 2023년</td>
+                            <td>혁신적인 디자인으로 투싼의 인기를 견인한 모델.</td>
+                            <td>1.6T 가솔린, 2.0 디젤, 1.6T 하이브리드</td>
+                            <td>여전히 현대적인 디자인, 다양한 트림 선택 가능.</td>
+                            <td>일부 연식은 최신 사양 부재</td>
+                        </tr>
+                        <tr class="highlight-row">
+                            <td><strong>투싼 (3세대, TL)</strong></td>
+                            <td>2015년 ~ 2020년</td>
+                            <td>가성비가 돋보이는 구형 모델.</td>
+                            <td>1.7 디젤, 2.0 디젤, 1.6T 가솔린</td>
+                            <td>저렴한 렌트 가격, 검증된 안정성, 유지보수 용이.</td>
+                            <td>최신 모델 대비 부족한 편의 사양 및 연비.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>투싼 하이브리드 렌트의 장점과 단점</h3>
+                <p><strong>투싼 하이브리드 렌트</strong>는 <strong>장거리 운행이 잦거나 도심 주행이 많은 운전자</strong>에게 특히 추천됩니다. 하이브리드 모델은 압도적인 연비 효율을 제공하여 유류비 절감 효과가 매우 큽니다. 2026년 현재 고유가 시대를 맞아 렌트 시장에서도 하이브리드 차량의 수요가 급증하고 있습니다. 하지만 일반 가솔린 모델 대비 차량 자체의 렌트 비용이 높기 때문에, 단기 렌트보다는 <strong>장기 렌트</strong> 시에만 비용 절감 효과를 체감하기 쉽습니다. 하이브리드 모델을 고민할 때는 <strong>투싼 렌트 가격 비교</strong> 시 월 납입금과 예상 주행 거리를 면밀히 따져봐야 합니다.</p>
+
+                <div class="keyword-tags" aria-label="투싼 렌트 관련 주요 키워드">
+                    <a href="#priceguide">투싼 장기렌트 가격</a>
+                    <a href="#review">투싼 NX4 후기</a>
+                    <a href="#contact">투싼 하이브리드 렌트 견적</a>
+                    <a href="#modelspecs">투싼 TL 장단점</a>
+                    <a href="#review">투싼 렌트 저렴한곳</a>
+                </div>
+            </section>
+
+            <section id="priceguide">
+                <h2>투싼 렌트 가격 및 비용 안내: 평균 견적은 얼마일까?</h2>
+                <p><strong>투싼 렌트 가격</strong>은 단순히 차량 모델에 의해서만 결정되지 않습니다. 렌트 기간(장기/단기), 보험 조건(자차 보험 범위), 주행 거리 약정, 그리고 렌트 업체별 프로모션 유무 등 복합적인 요인에 따라 견적이 천차만별입니다. 특히 <strong>투싼 렌트 비용</strong>을 절감하기 위해서는 렌트 업체별 <strong>신규 가입 혜택</strong>이나 <strong>현금 지원금</strong> 등의 프로모션을 비교해보는 것이 중요합니다. 아래는 2026년 기준, 투싼 렌트의 대략적인 예상 비용(VAT 포함)입니다.</p>
+
+                <h3>투싼 장기/단기 렌트 예상 가격표 (2026년 기준)</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>렌트 종류</th>
+                            <th>대표 모델 (NX4 기준)</th>
+                            <th>평균 비용 (월/일)</th>
+                            <th>주요 고려사항</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>장기 렌트 (48개월)</strong></td>
+                            <td>투싼 NX4 가솔린 (기본형)</td>
+                            <td>월 30만원 ~ 45만원</td>
+                            <td>초기 비용 X, 보험료/세금 포함, 주행 거리 약정 필수.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>장기 렌트 (48개월)</strong></td>
+                            <td>투싼 NX4 하이브리드</td>
+                            <td>월 35만원 ~ 50만원</td>
+                            <td>가솔린 모델 대비 높은 초기 비용, 장거리 주행 시 유리.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>단기 렌트 (1일)</strong></td>
+                            <td>투싼 NX4 가솔린</td>
+                            <td>일 8만원 ~ 12만원</td>
+                            <td>성수기/비수기 요금 차이 큼, 보험 조건 확인 필수.</td>
+                        </tr>
+                        <tr class="highlight-row">
+                            <td><strong>단기 렌트 (1일)</strong></td>
+                            <td>투싼 TL (구형 모델)</td>
+                            <td>일 6만원 ~ 9만원</td>
+                            <td>저렴한 가격, 가성비가 중요할 때 추천.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><strong>알려드립니다:</strong> 위 가격은 단순 예상 견적이며, 렌트 기간, 약정 주행 거리, 개인 신용도 및 보험 조건(자차 포함 여부)에 따라 <strong>투싼 렌트 견적</strong>은 크게 달라질 수 있습니다. 정확한 견적은 전문가 상담을 통해 확인하시기 바랍니다.</p>
+
+                <h3>투싼 렌트 비용 절감 팁: 싼곳 찾는 방법</h3>
+                <p>많은 분들이 <strong>투싼 렌트 저렴한곳</strong>을 찾지만, 단순히 가격이 싸다고 좋은 곳은 아닐 수 있습니다. 저렴한 곳을 선택할 때는 <strong>투싼 렌트 가격 비교</strong>뿐만 아니라, 차량 정비 상태, 보험 조건, 그리고 계약 해지 시 위약금 조항까지 꼼꼼하게 확인해야 합니다. <strong>네이버 검색</strong>이나 <strong>구글 검색</strong>을 통해 여러 업체의 견적을 비교하고, 특히 <strong>유튜브</strong>나 <strong>블로그 후기</strong>를 참고하여 서비스 품질을 확인하는 것이 중요합니다. <strong>신규 가입 혜택</strong>이나 <strong>프로모션 이벤트</strong>를 진행하는 업체에서는 초기 비용 부담을 줄여주는 경우가 많으니 놓치지 마세요.</p>
+
+                <div class="cta-container">
+                    <a href="#contact" class="cta-button">투싼 렌트 가격 비교 문의</a>
+                </div>
+            </section>
+
+            <section id="review">
+                <h2>투싼 렌트 장점, 단점 분석 및 내돈내산 후기</h2>
+                <p><strong>투싼 렌트 장점과 단점</strong>을 명확히 이해해야 후회 없는 선택을 할 수 있습니다. <strong>투싼 NX4</strong> 모델은 뛰어난 상품성을 인정받았지만, 렌트카 이용 시 몇 가지 고려해야 할 사항들이 있습니다. 특히 <strong>투싼 렌트 후기</strong>를 살펴보면 장기 렌트 시 보험료 절감이나 세금 부담이 없다는 장점이 강조되지만, 반대로 중도 해지 시 위약금이나 주행 거리 제한과 같은 단점도 함께 언급됩니다.</p>
+
+                <h3>투싼 렌트의 주요 장점</h3>
+                <ul>
+                    <li><strong>초기 비용 부담 없음:</strong> 신차 구입 시 발생하는 취등록세, 보험료, 자동차세 등을 따로 납부할 필요가 없습니다. 렌트료에 모든 비용이 포함됩니다.</li>
+                    <li><strong>유지 관리 용이성:</strong> 차량 정기 점검 및 소모품 교체 등을 렌트 업체에서 대행해주는 경우가 많아 차량 관리에 대한 부담이 적습니다.</li>
+                    <li><strong>보험료 할증 걱정 없음:</strong> 사고가 발생해도 개인 보험료가 할증되지 않아 운전 경력이 짧거나 사고 이력이 있는 분들에게 유리합니다.</li>
+                    <li><strong>세금 절감 효과:</strong> 개인 사업자나 법인 사업자의 경우 렌트 비용을 전액 비용 처리할 수 있어 절세 효과가 큽니다.</li>
+                </ul>
+
+                <h3>투싼 렌트의 주요 단점</h3>
+                <ul>
+                    <li><strong>번호판 제한:</strong> 렌트카는 "하, 허, 호" 번호판을 사용합니다. 일부 운전자는 이 번호판을 선호하지 않는 경우가 있습니다.</li>
+                    <li><strong>주행 거리 제한:</strong> 장기 렌트 시 연간 주행 거리가 제한됩니다. 약정 거리를 초과하면 추가 비용을 지불해야 합니다.</li>
+                    <li><strong>중도 해지 위약금:</strong> 계약 기간을 채우지 못하고 해지할 경우 위약금이 발생합니다. 계약 전 위약금 규정을 반드시 확인해야 합니다.</li>
+                    <li><strong>옵션 선택 제한:</strong> 단기 렌트카의 경우 원하는 세부 옵션(파노라마 선루프, 특정 색상 등)을 선택하기 어려울 수 있습니다.</li>
+                </ul>
+
+                <h3>투싼 렌트 만족도 분석 (가상 데이터)</h3>
+                <div class="data-visualization">
+                    <h4>고객 만족도 항목별 평가 (2026년 1분기 투싼 렌트 이용자 대상)</h4>
+                    <div class="bar-chart">
+                        <div class="bar" style="width: 85%;">
+                            <span class="bar-label">차량 성능 및 승차감</span>
+                        </div>
+                        <div class="bar" style="width: 90%;">
+                            <span class="bar-label">연비 효율성 (하이브리드 포함)</span>
+                        </div>
+                        <div class="bar" style="width: 70%;">
+                            <span class="bar-label">렌트 가격 합리성</span>
+                        </div>
+                        <div class="bar" style="width: 75%;">
+                            <span class="bar-label">업체 서비스 만족도</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="faq">
+                <h2>자주 묻는 질문 (FAQ)</h2>
+                <p><strong>네이버 지식iN</strong>에서 <strong>'투싼렌트'</strong>를 검색하신 많은 분들이 궁금해하시는 질문들을 정리했습니다. 계약 전 반드시 확인하세요.</p>
+                <dl>
+                    <dt tabindex="0" aria-expanded="false" class="accordion-trigger">투싼 렌트 시 보험은 어떻게 되나요? 자차 보험은 필수인가요?</dt>
+                    <dd class="accordion-content">모든 렌터카는 의무적으로 종합보험(대인, 대물, 자손)에 가입되어 있습니다. 하지만 차량 파손 시 발생하는 수리 비용을 보장하는 자차 보험(차량손해면책제도)은 선택 사항입니다. 단기 렌트의 경우 자차 보험에 가입하지 않으면 사고 발생 시 모든 수리 비용을 본인이 부담해야 합니다. <strong>완전자차</strong>(면책금 0원) 또는 <strong>일반자차</strong>(면책금 발생) 중 본인의 운전 습관에 맞는 것을 선택해야 합니다.</dd>
+
+                    <dt tabindex="0" aria-expanded="false" class="accordion-trigger">장기 렌트와 리스의 차이점은 무엇인가요?</dt>
+                    <dd class="accordion-content">장기 렌트는 차량의 명의가 렌트 업체에 있어 보험료 할증 걱정이 없고, 월 렌트료에 모든 비용이 포함됩니다. 리스는 차량 명의가 고객에게 있어 보험 경력이 유지되지만, 할부 금융 상품에 가까워 초기 보증금이나 잔존 가치에 따라 월 납입금이 달라집니다. <strong>투싼 렌트 장단점 비교</strong> 시 이 부분을 꼼꼼히 체크해야 합니다.</dd>
+
+                    <dt tabindex="0" aria-expanded="false" class="accordion-trigger">투싼 렌트카는 LPG 모델도 있나요?</dt>
+                    <dd class="accordion-content">최신 투싼 NX4 모델은 가솔린, 디젤, 하이브리드 모델이 주력이며 LPG 모델은 출시되지 않았습니다. 렌트카 시장에서도 대부분 가솔린, 하이브리드 모델이 주를 이룹니다. 연비를 생각한다면 하이브리드 모델을, 저렴한 <strong>투싼 렌트 가격</strong>을 원한다면 가솔린 모델을 추천드립니다.</dd>
+
+                    <dt tabindex="0" aria-expanded="false" class="accordion-trigger">2026년 투싼 렌트카를 저렴하게 이용할 수 있는 시기가 있나요?</dt>
+                    <dd class="accordion-content">네, 렌터카 업체들은 보통 연말이나 연초에 차량 재고 소진을 위한 프로모션을 진행합니다. 또한 신형 모델이 출시되는 시기에는 구형 모델(NX4 초기형, TL 등)의 재고 차량을 <strong>할인</strong>된 가격으로 <strong>장기 렌트</strong>하거나 <strong>신규 가입 혜택</strong>을 제공하는 경우가 많습니다. <strong>투싼 렌트 싼곳</strong>을 찾으려면 이 시기를 노리는 것이 좋습니다.</dd>
+                </dl>
+            </section>
+
+            <section class="external-links">
+                <h2>신뢰할 수 있는 외부 정보 참고</h2>
+                <p>투싼 렌트카에 대한 더 깊은 정보를 얻고, 신뢰할 수 있는 결정을 내리기 위해 다음 외부 사이트를 참고해보세요.</p>
+                <ul>
+                    <li><a href="https://auto.naver.com/" target="_blank">네이버 자동차: 투싼 신차 정보 및 스펙 비교</a> (모델별 상세 정보 확인)</li>
+                    <li><a href="https://www.carisyou.com/" target="_blank">카이즈유: 국내 렌터카 시장 동향 및 통계 자료</a> (시장 상황 파악)</li>
+                    <li><a href="https://www.molit.go.kr/" target="_blank">국토교통부: 자동차 관련 법규 및 정책 정보</a> (렌터카 운전 자격, 보험 규정 등)</li>
+                    <li><a href="https://namu.wiki/w/%ED%98%84%EB%8C%80%20%ED%88%AC%EC%8C%8C%EB%82%98" target="_blank">나무위키: 현대 투싼 모델 역사 및 특징</a> (심층적인 정보)</li>
+                    <li><a href="https://www.koreacar.co.kr/" target="_blank">한국렌터카사업조합연합회: 렌터카 이용 가이드라인</a> (안전한 이용 방법)</li>
+                </ul>
+            </section>
+
+            <section id="contact">
+                <h2>투싼 렌트 견적 문의 및 예약</h2>
+                <p><strong>'투싼렌트'</strong>에 대한 궁금증이 해결되지 않으셨나요? 고객님의 조건(주행 거리, 기간, 보험 등)에 따라 <strong>투싼 렌트 견적</strong>은 크게 달라집니다. 지금 바로 문의하시면 <strong>전문 상담원</strong>이 1:1 맞춤형 컨설팅을 통해 가장 합리적인 <strong>투싼 렌트 가격</strong>을 찾아드립니다. <strong>투싼 렌트 저렴한곳</strong>을 찾고 있다면, 투명한 견적 비교를 받아보세요.</p>
+
+                <div class="contact-form">
+                    <div class="form-group">
+                        <label for="name">이름</label>
+                        <input type="text" id="name" name="name" placeholder="이름을 입력해주세요" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">연락처</label>
+                        <input type="tel" id="phone" name="phone" placeholder="휴대폰 번호를 입력해주세요" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="rentaltype">희망 렌트 종류</label>
+                        <select id="rentaltype" name="rentaltype" required>
+                            <option value="">선택</option>
+                            <option value="longterm">장기 렌트 (1년 이상)</option>
+                            <option value="shortterm">단기 렌트 (1개월 미만)</option>
+                            <option value="testdrive">시승 및 체험</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="modelpreference">희망 모델 (선택)</label>
+                        <input type="text" id="modelpreference" name="modelpreference" placeholder="예: 투싼 하이브리드, 투싼 NX4 등">
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="message">문의 내용 상세</label>
+                        <textarea id="message" name="message" rows="4" placeholder="궁금한 점이나 특별히 원하는 조건을 자세히 적어주세요."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn full-width">견적 요청하기</button>
+                </div>
+
+                <div class="cta-container">
+                    <a href="tel:01012345678" class="cta-button" aria-label="전화로 견적 상담받기">전화로 바로 상담받기 📞</a>
+                </div>
+            </section>
+        </main>
+
+        <script>
+            // FAQ 아코디언 기능 (접기/펼치기)
+            document.querySelectorAll('dl dt').forEach((dt) => {
+                dt.addEventListener('click', () => {
+                    // 현재 클릭된 dt의 다음 요소 (dd)를 찾습니다.
+                    const content = dt.nextElementSibling;
+                    const isActive = dt.classList.contains('active');
+
+                    // 모든 dt에서 active 클래스를 제거하고 dd를 숨깁니다.
+                    document.querySelectorAll('dl dt').forEach(item => {
+                        item.classList.remove('active');
+                        item.setAttribute('aria-expanded', 'false');
+                        if (item.nextElementSibling) {
+                            item.nextElementSibling.style.display = 'none';
+                        }
+                    });
+
+                    // 현재 클릭된 dt가 활성화되지 않은 상태였다면 활성화시킵니다.
+                    if (!isActive) {
+                        dt.classList.add('active');
+                        dt.setAttribute('aria-expanded', 'true');
+                        if (content) {
+                            content.style.display = 'block';
+                        }
+                    }
+                });
+                dt.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        dt.click();
+                    }
+                });
+            });
+        </script>
+      
